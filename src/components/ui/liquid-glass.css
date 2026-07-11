@@ -1,0 +1,63 @@
+/* Liquid Glass Specular Layers and Multi-layered Reflections */
+.liquid-glass-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 1rem;
+  box-shadow: 
+    0 12px 32px 0 rgba(0, 0, 0, 0.35),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-container:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 
+    0 16px 40px 0 rgba(0, 0, 0, 0.45),
+    0 0 24px -4px rgba(99, 102, 241, 0.3),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Layered specular highlight */
+.liquid-glass-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+/* Gradient Borders */
+.gradient-border-glass {
+  position: relative;
+  border: double 1px transparent;
+  border-radius: 1rem;
+  background-image: linear-gradient(rgba(18, 20, 30, 0.85), rgba(18, 20, 30, 0.85)), 
+                    linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+/* Mesh background animations for Cap Studio Canvas */
+@keyframes meshDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-30px, 20px) scale(1.15); }
+}
+@keyframes meshDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -30px) scale(1.2); }
+}
+
+.mesh-blob-1 {
+  animation: meshDrift1 8s infinite ease-in-out;
+}
+.mesh-blob-2 {
+  animation: meshDrift2 10s infinite ease-in-out;
+}
